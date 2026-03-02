@@ -103,5 +103,23 @@ namespace WebApplication1.Controllers
         {
             return _context.Incidents.Any(e => e.Id == id);
         }
+
+
+        [HttpGet("filter-by-status/{status}")]
+        public IActionResult FilterByStatus(string s)
+        {
+            var l = from inc in  _context.Incidents where inc.Status == s select inc;
+            return Ok(l);
+        }
+
+
+        [HttpGet("filter-by-severity/{severity}")]
+        public IActionResult FilterBySeverity(string severity)
+        {
+            var l = from inc in _context.Incidents where inc.Severity == severity select inc;
+
+            return Ok(l);
+        }
     }
+
 }
