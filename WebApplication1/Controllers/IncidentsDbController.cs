@@ -85,6 +85,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<Incident>> PostIncident(Incident incident)
         {
+
             incident.Status = "IN_PROGRESS";
             incident.CreatedAt = DateTime.Now;
 
