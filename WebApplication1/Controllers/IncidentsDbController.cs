@@ -120,6 +120,16 @@ namespace WebApplication1.Controllers
 
             return Ok(l);
         }
+
+        [HttpGet("getbyseverityasync/{severity}")]
+        public async Task<IActionResult> FilterByStatusAsync(string severity)
+        {
+            var incidents = await _context.Incidents.Where(
+                i => i.Severity.Contains(severity)).ToListAsync();
+            
+
+        }
+
     }
 
 }
