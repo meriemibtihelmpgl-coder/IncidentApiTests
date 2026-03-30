@@ -74,15 +74,25 @@ namespace WebApplication1.Controllers
 
         // POST: api/IncidentsDb
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<Incident>> PostIncident(Incident incident)
+        //{
+        //    _context.Incidents.Add(incident);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetIncident", new { id = incident.Id }, incident);
+        //}
         [HttpPost]
         public async Task<ActionResult<Incident>> PostIncident(Incident incident)
         {
+            incident.Status = "OPEN";
+            incident.CreatedAt = DateTime.Now;
+
             _context.Incidents.Add(incident);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetIncident", new { id = incident.Id }, incident);
         }
-
         // DELETE: api/IncidentsDb/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteIncident(int id)
@@ -122,13 +132,27 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet("getbyseverityasync/{severity}")]
-        public async Task<IActionResult> FilterByStatusAsync(string severity)
+        public async Task<IActionResult> FilterBySeverityAsync(string severity)
         {
-            var incidents = await _context.Incidents.Where(
-                i => i.Severity.Contains(severity)).ToListAsync();
-            
+            var incidents = await _context.Incidents
+                .Where(i => i.Severity.Contains(severity))
+                .ToListAsync();
 
+            return Ok(incidents);
         }
+
+        [HttpGet("statusAsync/{status}")]
+        public async Task<IActionResult> FilterByStatusAsync(string status)
+        {
+            var result = await _context.Incidents
+                .Where(i => i.Status.Contains(status))
+                .ToListAsync();
+
+            return Ok(result);
+        }
+        private static readonly string[] AllowedSeverities = { "LOW", "MEDIUM", "HIGH", "CRITICAL" };
+        private static readonly string[] AllowedStatuses = { "OPEN", "IN_PROGRESS", "RESOLVED" };
+
 
     }
 
