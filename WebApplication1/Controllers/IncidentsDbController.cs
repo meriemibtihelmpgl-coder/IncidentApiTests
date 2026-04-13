@@ -85,6 +85,10 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<Incident>> PostIncident(Incident incident)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             incident.Status = "OPEN";
             incident.CreatedAt = DateTime.Now;
 
