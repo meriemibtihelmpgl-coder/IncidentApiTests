@@ -3,3 +3,4 @@ obj/
 *.user
 *.Development.json
 .vs/
+Migrations/

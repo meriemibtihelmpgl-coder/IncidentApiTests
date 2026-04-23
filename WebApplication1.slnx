@@ -1,3 +1,8 @@
 <Solution>
+  <Project Path="AppTests/AppTests.ApiService/AppTests.ApiService.csproj" />
+  <Project Path="AppTests/AppTests.AppHost/AppTests.AppHost.csproj" Id="927bc439-8ee7-4f8d-a466-2ad9915af376" />
+  <Project Path="AppTests/AppTests.ServiceDefaults/AppTests.ServiceDefaults.csproj" />
+  <Project Path="AppTests/AppTests.Web/AppTests.Web.csproj" />
+  <Project Path="AppTests1/AppTests1.csproj" Id="c7ece64c-def2-4088-9152-8a431a9d95e2" />
   <Project Path="WebApplication1/WebApplication1.csproj" />
 </Solution>
