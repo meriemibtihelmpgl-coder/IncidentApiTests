@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -85,8 +85,13 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<Incident>> PostIncident(Incident incident)
         {
-
             incident.Status = "IN_PROGRESS";
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            incident.Status = "OPEN";
             incident.CreatedAt = DateTime.Now;
 
             _context.Incidents.Add(incident);
@@ -119,7 +124,7 @@ namespace WebApplication1.Controllers
         [HttpGet("filter-by-status/{status}")]
         public IActionResult FilterByStatus(string s)
         {
-            var l = from inc in  _context.Incidents where inc.Status == s select inc;
+            var l = from inc in _context.Incidents where inc.Status == s select inc;
             return Ok(l);
         }
 
