@@ -9,7 +9,7 @@ namespace AppTests1
         {
             var mathematics = new Mathematics();
             var result = mathematics.Sum(5, 10);
-            Assert.Equal(10, result);
+            Assert.Equal(15, result);
         }
         [Fact]
         public void Sum_NegativeAndPositiveNumbers_ReturnsCorrectResult()
