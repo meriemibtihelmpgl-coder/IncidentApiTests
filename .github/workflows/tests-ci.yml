@@ -36,7 +36,7 @@ jobs:
 
       - name: Run tests
         env:
-          ConnectionStrings__IncidentsConnection: "Server=localhost,1433;Database=IncidentsDb;User Id=sa;Password=My_password123!;TrustServerCertificate=True;"
+          ConnectionStrings__IncidentsConnection: "Server=localhost,1433;Database=IncidentsDb;User Id=sa;Password=My_password123;TrustServerCertificate=True;"
         run: dotnet test --no-build --verbosity normal --logger "trx;LogFileName=TestResults.trx"
 
       - name: Upload test report
