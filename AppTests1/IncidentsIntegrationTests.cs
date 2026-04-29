@@ -6,6 +6,7 @@ using WebApplication1.Models;
 
 namespace AppTests1
 {
+    [Trait("Category", "Integration")]
     public class IncidentsIntegrationTests : IClassFixture<CustomWebApplicationFactory>
     {
         private readonly HttpClient _client;
