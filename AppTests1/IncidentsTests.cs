@@ -8,6 +8,7 @@ using WebApplication1.Models;
 
 namespace AppTests1
 {
+    [Trait("Category", "Unit")]
     public class IncidentsTests
     {
         private IncidentsDbContext GetDbC0ontext()
